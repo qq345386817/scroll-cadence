@@ -1,0 +1,45 @@
+{
+  "default": "en-US",
+  "locales": [
+    {
+      "id": "en-US",
+      "extension": "en_US",
+      "name": "English (US)"
+    },
+    {
+      "id": "zh-Hans",
+      "extension": "zh_CN",
+      "name": "简体中文"
+    },
+    {
+      "id": "zh-Hant",
+      "extension": "zh_TW",
+      "name": "繁體中文"
+    },
+    {
+      "id": "es",
+      "extension": "es",
+      "name": "Español"
+    },
+    {
+      "id": "ja",
+      "extension": "ja",
+      "name": "日本語"
+    },
+    {
+      "id": "ko",
+      "extension": "ko",
+      "name": "한국어"
+    },
+    {
+      "id": "fr",
+      "extension": "fr",
+      "name": "Français"
+    },
+    {
+      "id": "de",
+      "extension": "de",
+      "name": "Deutsch"
+    }
+  ]
+}

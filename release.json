@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "origin": "https://scroll-cadence.luopeike.com",
+  "macOS": {
+    "dmg": "/downloads/ScrollCadence-1.0.0.dmg",
+    "sha256": "531f6f9f96e2f326d061f855f8164cdefb370475f94ec4daa3c5ff602c333be3",
+    "architectures": [
+      "arm64",
+      "x86_64"
+    ],
+    "notarized": true
+  },
+  "iOS": {
+    "status": "preparing",
+    "appStoreURL": null,
+    "price": "free"
+  }
+}
