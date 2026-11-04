@@ -9,6 +9,10 @@ const out = root+'dist/';
 await rm(out, {recursive:true,force:true}); await mkdir(out,{recursive:true});
 await cp(root+'assets',out+'assets',{recursive:true});
 await cp(root+'public',out,{recursive:true});
+const deployCommit = process.env.CF_PAGES_COMMIT_SHA || process.env.GITHUB_SHA;
+if (deployCommit && /^[a-f0-9]{40}$/.test(deployCommit)) {
+ await writeFile(out+'deployment.json', JSON.stringify({commit: deployCommit})+'\n');
+}
 const assets = {};
 for (const file of ['design-tokens.css','site.css','engine.js','site.js']) {
  const bytes = await readFile(root+'assets/'+file);

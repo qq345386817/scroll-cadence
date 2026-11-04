@@ -4,6 +4,7 @@
   "macOS": {
     "dmg": "/downloads/ScrollCadence-1.0.0.dmg",
     "sha256": "6a8c4ce2494b049f6b6a140ea02ff9fd5b3a8c50a6a3b54b3579996550c09131",
+    "artifactURL": "https://github.com/qq345386817/scroll-cadence/releases/download/desktop-v1.0.0-build10/ScrollCadence-1.0.0.dmg",
     "architectures": [
       "arm64",
       "x86_64"

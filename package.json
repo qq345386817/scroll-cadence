@@ -4,8 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare-downloads": "node scripts/prepare-downloads.mjs",
     "build": "node scripts/build.mjs",
+    "build:pages": "node scripts/prepare-downloads.mjs && node scripts/build.mjs && node scripts/verify.mjs",
     "verify": "node scripts/verify.mjs",
+    "verify-live": "node scripts/verify-live.mjs",
     "dev": "node scripts/serve.mjs"
   }
 }

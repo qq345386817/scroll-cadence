@@ -3,6 +3,7 @@
 Independent Git repository for the homepage, guide and privacy policy. No framework, external fonts, analytics, cookies or build dependencies.
 
 ```sh
+npm run prepare-downloads
 npm run build
 npm run verify
 npm run dev
@@ -17,7 +18,13 @@ The static output is `dist/`. The root uses a server 301 redirect to `/en-US/` o
 
 Production origin: `https://scroll-cadence.luopeike.com`. `release.json` controls the macOS DMG link and iOS preparation status. Add only a signed, notarized DMG to the ignored `downloads/` directory before building; it is copied into `dist/downloads/`. Canonical URLs and the sitemap use the configured origin. iOS is free for the first release; no App Store download badge appears until it is publicly available.
 
-Deploy the contents of `dist/` using Cloudflare Pages Direct Upload. The Git repository is independent and does not require a parent repository push. Release binaries are deliberately excluded from Git.
+Pushing to this repository's `main` branch automatically builds, verifies, and deploys `dist/` through Cloudflare Pages' native GitHub integration. The Git-integrated project is `scroll-cadence-site`; the original Direct Upload project `scroll-cadence` remains as a rollback copy. Production uses `scroll-cadence.luopeike.com`. The Git repository is independent and does not require a parent repository push. A failed build or checksum check stops publication.
+
+Build settings: production branch `main`, framework preset `None`, build command `npm run build:pages`, output directory `dist`, root directory `/`, and environment variable `NODE_VERSION=24`. No Cloudflare API token or GitHub Actions deployment secret is required; the existing Cloudflare GitHub App connection handles source access. Preview deployments can be enabled for non-production branches without replacing production.
+
+Release binaries are deliberately excluded from Git. Run `npm run prepare-downloads` before the first build of a clean checkout: it downloads the fixed GitHub Release asset in `release.json` (`macOS.artifactURL`) and requires the configured SHA-256 to match. For a new Desktop release, first upload the signed and notarized DMG as a new GitHub Release asset, then update `artifactURL`, `dmg`, `sha256`, and the build/version metadata together. Keep the old release asset available for reproducible builds. An existing local DMG with a different checksum causes preparation to stop instead of overwriting it.
+
+Cloudflare's commit variable is recorded in `/deployment.json`. After a release or deployment configuration change, run `SC_DEPLOY_COMMIT=<40-character commit SHA> npm run verify-live` to check the exact deployed commit, Bing and Google verification files, sitemap, public DMG checksum, and both domain redirects. See the Cloudflare Pages deployment for build and verification logs. The old Direct Upload project remains available for recovery.
 
 The Cloudflare Pages custom domain is `scroll-cadence.luopeike.com` (CNAME to `scroll-cadence.pages.dev`, SSL enabled). The existing account-level Bulk Redirect rule `pages_dev_2_luopeike_com` references the shared `tacti_beat` list. Its ScrollCadence entry redirects `scroll-cadence.pages.dev/` to `https://scroll-cadence.luopeike.com/` with HTTP 301 and enables Preserve query string, Include subdomains, Subpath matching, and Preserve path suffix. This redirect lives in Cloudflare, not in the generated static assets.
 
