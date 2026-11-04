@@ -7,7 +7,7 @@ const root = new URL('../', import.meta.url);
 const release = JSON.parse(await readFile(new URL('release.json', root), 'utf8'));
 const commit = process.env.SC_DEPLOY_COMMIT || process.env.CF_PAGES_COMMIT_SHA || process.env.GITHUB_SHA;
 assert.match(commit || '', /^[a-f0-9]{40}$/, 'SC_DEPLOY_COMMIT or the CI commit variable is required to identify the deployed build');
-const origin = release.origin;
+const origin = process.env.SC_VERIFY_ORIGIN || release.origin;
 
 async function retry(check) {
   for (let attempt = 0; ; attempt++) {
@@ -49,6 +49,6 @@ await retry(async () => {
     redirect: 'manual', signal: AbortSignal.timeout(30_000),
   });
   assert.equal(old.status, 301);
-  assert.equal(old.headers.get('location'), `${origin}/zh-Hans/help/?commit=${commit}`);
+  assert.equal(old.headers.get('location'), `${release.origin}/zh-Hans/help/?commit=${commit}`);
 });
 console.log(`Verified production commit ${commit}, Bing/Google verification files, sitemap, DMG and redirects.`);
