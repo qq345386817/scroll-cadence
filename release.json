@@ -1,6 +1,9 @@
 {
   "version": "1.0.1",
   "origin": "https://scroll-cadence.luopeike.com",
+  "legacyDownloads": {
+    "/downloads/ScrollCadence-1.0.0.dmg": "https://github.com/qq345386817/scroll-cadence/releases/download/desktop-v1.0.0-build10/ScrollCadence-1.0.0.dmg"
+  },
   "macOS": {
     "dmg": "/downloads/ScrollCadence-1.0.1.dmg",
     "sha256": "658897c6652b31395e8816346c6cac5a50c669c1e224456ca9bc72284b7f4f35",

@@ -70,7 +70,7 @@ for (const locale of config.locales) for (const page of ['home','help','privacy'
 }
 await writeFile(out+'index.html',`<!doctype html><html lang="en-US"><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=/en-US/"><title>ScrollCadence</title><a href="/en-US/">ScrollCadence — English (US)</a></html>`);
 await writeFile(out+'404.html','<!doctype html><html lang="en-US"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page not found — ScrollCadence</title><h1>Page not found</h1><a href="/en-US/">ScrollCadence home</a></html>');
-await writeFile(out+'_redirects','/ /en-US/ 301\n');
+await writeFile(out+'_redirects','/ /en-US/ 301\n'+Object.entries(release.legacyDownloads ?? {}).map(([from,to])=>`${from} ${to} 301\n`).join(''));
 await writeFile(out+'_headers',Object.values(assets).map(path=>`${path}\n  Cache-Control: public, max-age=31536000, immutable`).join('\n')+'\n');
 console.log('Built 24 localized home/help/privacy pages. Default: en-US.');
 

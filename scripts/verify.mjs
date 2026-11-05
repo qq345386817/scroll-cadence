@@ -54,7 +54,12 @@ for (const { id } of config.locales) {
 const sitemap = await readFile(new URL('dist/sitemap.xml', root), 'utf8');
 assert.deepEqual([...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m[1]), canonicalURLs);
 assert((await readFile(new URL('dist/robots.txt', root), 'utf8')).includes(`Sitemap: ${release.origin}/sitemap.xml`));
-assert.equal(await readFile(new URL('dist/_redirects', root), 'utf8'), '/ /en-US/ 301\n');
+const legacyDownloads = Object.entries(release.legacyDownloads ?? {});
+for (const [from, to] of legacyDownloads) {
+  assert.match(from, /^\/downloads\/ScrollCadence-[\d.]+\.dmg$/);
+  assert(to.startsWith('https://github.com/qq345386817/scroll-cadence/releases/download/'));
+}
+assert.equal(await readFile(new URL('dist/_redirects', root), 'utf8'), '/ /en-US/ 301\n' + legacyDownloads.map(([from,to])=>`${from} ${to} 301\n`).join(''));
 const index = await readFile(new URL('dist/llms.txt', root), 'utf8');
 for (const url of canonicalURLs) assert(index.includes(`](${url})`));
 for (const file of await readdir(new URL('public/', root))) {
