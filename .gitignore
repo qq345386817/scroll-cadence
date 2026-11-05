@@ -2,3 +2,24 @@
 /dist/
 /node_modules/
 /downloads/
+
+# Cloudflare CLI state, local configuration and diagnostics
+/.wrangler/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+!.env.example
+*.log
+*.p8
+*.p12
+*.pfx
+*.pem
+*.key
+*.cer
+*.csr
+*.mobileprovision
+*.provisionprofile
+*.dmg
+*.pkg
+*.zip
