@@ -1,0 +1,117 @@
+{
+  "sourceVersion": "1.0.1",
+  "locales": {
+    "en-US": {
+      "name": "ScrollCadence: Auto Scroll",
+      "subtitle": "Safari Reading & Timed Paging",
+      "summary": "Let Safari webpages move at your pace. Set speed or a page interval, choose a scroll area, and pause or resume from the floating controls.",
+      "features": [
+        "Scroll up, down, left or right.",
+        "Adjust continuous scrolling speed.",
+        "Set a paging interval and page distance.",
+        "Choose the full page or an inner scroll area.",
+        "Use an optional countdown before scrolling starts.",
+        "Pause, resume or stop from the floating controls."
+      ],
+      "limitations": "Works in Safari webpages. Browser system pages, some PDFs, canvases and cross-origin frames may be unsupported. Does not scroll other iPhone apps or keep scrolling while the device is locked."
+    },
+    "zh-Hans": {
+      "name": "ScrollCadence：网页自动滚动",
+      "subtitle": "Safari 阅读调速、定时翻页与区域选择",
+      "summary": "让 Safari 长网页按你的节奏自动滚动。设置速度或翻页间隔，选择整页或内部区域，并用浮动工具条随时暂停、继续或停止。",
+      "features": [
+        "支持上、下、左、右四个方向。",
+        "连续滚动，可调节速度。",
+        "设置分页间隔和每次移动的距离。",
+        "滚动整页，或点选内部滚动区域。",
+        "可设置开始前的倒计时。",
+        "通过网页浮动控件暂停、继续和停止。"
+      ],
+      "limitations": "仅用于 Safari 网页。浏览器系统页面、部分 PDF、画布与跨来源框架可能不受支持。不支持滚动其他 iPhone App，也不支持锁屏持续滚动。"
+    },
+    "zh-Hant": {
+      "name": "ScrollCadence：網頁自動捲動",
+      "subtitle": "Safari 閱讀調速、定時翻頁與區域選取",
+      "summary": "讓 Safari 長網頁按你的步調自動捲動。設定速度或翻頁間隔，選取整頁或內部區域，並用浮動工具列隨時暫停、繼續或停止。",
+      "features": [
+        "支援上、下、左、右四個方向。",
+        "連續捲動，可調整速度。",
+        "設定分頁間隔和每次移動的距離。",
+        "捲動整頁，或點選內部捲動區域。",
+        "可設定開始前的倒數計時。",
+        "透過網頁浮動控制項暫停、繼續和停止。"
+      ],
+      "limitations": "僅適用於 Safari 網頁。瀏覽器系統頁面、部分 PDF、畫布與跨來源框架可能不受支援。不支援捲動其他 iPhone App，也不支援鎖定螢幕後持續捲動。"
+    },
+    "es": {
+      "name": "ScrollCadence: Desplazamiento",
+      "subtitle": "Safari: lectura automática",
+      "summary": "Lee páginas largas en Safari a tu ritmo. Ajusta la velocidad o el intervalo, elige una zona y controla la lectura desde los botones flotantes.",
+      "features": [
+        "Desplázate arriba, abajo, a la izquierda o a la derecha.",
+        "Ajusta la velocidad del desplazamiento continuo.",
+        "Define el intervalo y la distancia de cada avance.",
+        "Elige la página completa o una zona interna.",
+        "Usa una cuenta atrás antes de empezar.",
+        "Pausa, reanuda y detén con los controles flotantes."
+      ],
+      "limitations": "Solo funciona en páginas web de Safari. Algunas páginas del sistema, PDF, lienzos y marcos de otro origen pueden no ser compatibles. No desplaza otras apps ni funciona con el dispositivo bloqueado."
+    },
+    "ja": {
+      "name": "ScrollCadence：自動スクロール",
+      "subtitle": "Safariの読書速度調整と定時ページ送り",
+      "summary": "Safariの長いウェブページを自分のペースで。速度やページ送りの間隔、対象領域を選び、フローティング操作で一時停止・再開できます。",
+      "features": [
+        "上下左右の4方向にスクロール。",
+        "連続スクロールの速度を調整。",
+        "ページ送りの間隔と移動量を設定。",
+        "ページ全体または内部のスクロール領域を選択。",
+        "カウントダウン後に開始。",
+        "フローティング操作で一時停止、再開、停止。"
+      ],
+      "limitations": "Safariのウェブページで動作します。システムページ、一部のPDF、キャンバス、異なるオリジンのフレームには対応しない場合があります。他のiPhoneアプリや画面ロック中のスクロールには対応しません。"
+    },
+    "ko": {
+      "name": "ScrollCadence: 자동 스크롤",
+      "subtitle": "Safari 읽기 속도·간격별 페이지 넘김",
+      "summary": "Safari의 긴 웹페이지를 원하는 속도로 읽으세요. 속도나 페이지 간격, 영역을 선택하고 플로팅 컨트롤로 일시 정지하거나 재개할 수 있습니다.",
+      "features": [
+        "위, 아래, 왼쪽, 오른쪽으로 스크롤합니다.",
+        "연속 스크롤 속도를 조절합니다.",
+        "페이지 이동 간격과 거리를 설정합니다.",
+        "전체 페이지 또는 내부 스크롤 영역을 선택합니다.",
+        "카운트다운 후 시작할 수 있습니다.",
+        "플로팅 컨트롤로 일시 정지, 재개, 중지합니다."
+      ],
+      "limitations": "Safari 웹페이지에서 동작합니다. 시스템 페이지, 일부 PDF, 캔버스 및 다른 출처의 프레임은 지원되지 않을 수 있습니다. 다른 iPhone 앱이나 기기가 잠긴 상태에서는 스크롤하지 않습니다."
+    },
+    "fr": {
+      "name": "ScrollCadence: Défilement auto",
+      "subtitle": "Safari : lire à votre rythme",
+      "summary": "Lisez les longues pages Safari à votre rythme. Réglez la vitesse ou l’intervalle, choisissez une zone et utilisez les commandes flottantes.",
+      "features": [
+        "Défilez vers le haut, le bas, la gauche ou la droite.",
+        "Réglez la vitesse du défilement continu.",
+        "Choisissez l’intervalle et la distance de chaque avance.",
+        "Sélectionnez la page entière ou une zone interne.",
+        "Lancez le défilement après un compte à rebours.",
+        "Mettez en pause, reprenez ou arrêtez avec les commandes flottantes."
+      ],
+      "limitations": "Fonctionne sur les pages web de Safari. Certaines pages système, certains PDF, canevas et cadres d’une autre origine peuvent être incompatibles. Ne fait pas défiler les autres apps ni les pages lorsque l’appareil est verrouillé."
+    },
+    "de": {
+      "name": "ScrollCadence: Auto-Scroll",
+      "subtitle": "Safari: Lesetempo & Seiten",
+      "summary": "Lies lange Safari-Seiten in deinem Tempo. Wähle Geschwindigkeit oder Seitenintervall, markiere einen Bereich und nutze die schwebenden Steuerelemente.",
+      "features": [
+        "Nach oben, unten, links oder rechts scrollen.",
+        "Die Geschwindigkeit beim kontinuierlichen Scrollen anpassen.",
+        "Seitenintervall und Strecke pro Schritt einstellen.",
+        "Die ganze Seite oder einen inneren Scrollbereich wählen.",
+        "Optional mit einem Countdown starten.",
+        "Über schwebende Steuerelemente pausieren, fortsetzen und stoppen."
+      ],
+      "limitations": "Funktioniert auf Safari-Webseiten. Systemseiten, manche PDFs, Canvas-Inhalte und Frames anderer Herkunft werden eventuell nicht unterstützt. Scrollt nicht in anderen iPhone-Apps oder bei gesperrtem Gerät."
+    }
+  }
+}
