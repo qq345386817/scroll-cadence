@@ -6,6 +6,18 @@
   const area = document.querySelector('.reading');
   if (!area) return;
 
+  const iosLink = document.querySelector('[data-platform="ios"]');
+  const macLink = document.querySelector('[data-platform="mac"]');
+  const appleTouchDevice = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (appleTouchDevice && iosLink && macLink) {
+    macLink.before(iosLink);
+    iosLink.classList.replace('secondary', 'primary');
+    macLink.classList.replace('primary', 'secondary');
+    const requirements = document.querySelector('[data-ios-requirements]');
+    requirements.textContent = requirements.dataset.iosRequirements;
+  }
+
   const messages = JSON.parse(document.querySelector('#translations').textContent);
   const t = (key, value) => messages[key].replace('{0}', value);
   const start = document.querySelector('#start');
@@ -24,6 +36,7 @@
     status.dataset.state = state;
     status.textContent = t(labels[state]);
     const playing = state === 'running' || state === 'countdown';
+    start.dataset.playing = String(playing);
     start.textContent = t(playing ? 'Pause' : state === 'paused' ? 'Resume' : 'Start');
     stop.disabled = !playing && state !== 'paused';
   });
@@ -35,6 +48,15 @@
     move: (horizontal, delta) => area.scrollBy({ left: horizontal ? delta : 0, top: horizontal ? 0 : delta, behavior:'instant' })
   });
   let settings = { direction:'down', mode:'continuous', speed:40, interval:3, countdown:0, pageFraction:.9 };
+  const meter = document.querySelector('.meter');
+  function updateProgress() {
+    const horizontal = ['left','right'].includes(settings.direction);
+    const range = horizontal ? area.scrollWidth - area.clientWidth : area.scrollHeight - area.clientHeight;
+    const position = horizontal ? area.scrollLeft : area.scrollTop;
+    meter.style.setProperty('--progress', range > 0 ? Math.max(0, Math.min(1, position / range)) : 0);
+  }
+  area.addEventListener('scroll', updateProgress, {passive:true});
+  new ResizeObserver(updateProgress).observe(area);
   function configure(patch) {
     settings = { ...settings, ...patch };
     engine.configure(settings);
@@ -44,6 +66,7 @@
     interval.closest('label').hidden = !paged;
     speed.closest('label').hidden = paged;
     document.querySelector('#speed-output').textContent = t('{0} CSS px / second', settings.speed);
+    updateProgress();
   }
   // Starting at an edge should allow a full pass in the selected direction.
   function rewindAtEdge() {

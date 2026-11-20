@@ -65,7 +65,7 @@ for (const locale of config.locales) for (const page of ['home','help','privacy'
  const switcher = `<label class="language"><span class="sr-only">${t('Language')}</span><select aria-label="${t('Language')}" data-language>${config.locales.map(l=>`<option value="/${l.id}/${page==='home'?'':page+'/'}" ${l.id===locale.id?'selected':''}>${esc(l.name)}</option>`).join('')}</select></label>`;
  const nav = ['help','privacy'].map(p => `<a href="${href(p)}"${page === p ? ' aria-current="page"' : ''}>${t(p === 'help' ? 'Help' : 'Privacy')}</a>`).join('') + switcher;
  const mark = `<img class="mark" src="/assets/app-icon.png" width="44" height="44" alt="">`;
- const header = `<header><div class="wrap nav"><a class="brand" href="${href('home')}">${mark}ScrollCadence</a><nav aria-label="${t('Guide')}">${nav}</nav></div></header>`;
+ const header = `<header><div class="wrap nav"><a class="brand" href="${href('home')}">${mark}ScrollCadence</a><nav aria-label="${t('Guide')}">${page === 'home' ? `<a class="nav-demo" href="#demo">${t('Explore the controls')}</a>` : ''}${nav}</nav></div></header>`;
  const foot = `<footer class="wrap"><div class="privacy-line"><svg class="shield" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6Z"></path><path d="m8 12 3 3 5-6"></path></svg><div><strong>${t('Your page stays on your device.')}</strong><p>${t('No accounts. No analytics. Settings stored locally.')}</p></div></div><nav>${nav}</nav></footer>`;
  const paragraph = key=>`<p>${t(key)}</p>`;
  const article = keys=>keys.map(paragraph).join('');
@@ -75,42 +75,49 @@ for (const locale of config.locales) for (const page of ['home','help','privacy'
  const directions = directionKeys.map(([id,arrow,label]) =>
    `<button data-direction="${id}" aria-label="${t(label)}" title="${t(label)}" aria-pressed="${id === 'down'}">${arrow}</button>`).join('');
  const paragraphs = reading[locale.id];
- const readingPage = (title, content, position) => `<article class="sheet">
-   <img src="/assets/coast-reading.jpg" class="coast coast-${position}" width="1280" height="853" alt="">
-   <div class="prose"><h3>${title}</h3>${content.map(text => `<p>${esc(text)}</p>`).join('')}</div>
+ const readingPage = (title, content, next = false) => `<article class="sheet">
+   <div class="cover${next ? ' next' : ''}"><img src="/assets/coast-reading.jpg" width="1280" height="853" alt=""><h3>${title}</h3></div>
+   <div class="prose">${content.map(text => `<p>${esc(text)}</p>`).join('')}</div>
  </article>`;
- const preview = `<div class="demo-stage" id="demo"><section class="demo" aria-labelledby="demo-title">
-   <div class="demo-heading"><span class="traffic" aria-hidden="true"><i></i><i></i><i></i></span>
-   <h2 id="demo-title" tabindex="-1">${t('Find your rhythm')}</h2><p class="demo-status" role="status">${t('Ready')}</p></div>
-   <div class="reading" tabindex="0" aria-label="${t('Local scrolling demo')}"><div class="reading-content">
-   ${readingPage(t('A little room to read'), paragraphs, 'first')}
-   ${readingPage(t('Your reading pace'), [catalog[locale.id]['Set a comfortable pace. Let the words move while your attention stays with the story.'], copy.pagingAnswer], 'next')}
-   </div></div>
-   <div class="console"><div class="control-pair"><fieldset><legend>${t('Reading mode')}</legend>
-   <div class="segmented"><button data-mode="continuous" aria-pressed="true">${t('Continuous')}</button><button data-mode="paged" aria-pressed="false">${t('Paged')}</button></div></fieldset>
-   <fieldset><legend>${t('Direction')}</legend><div class="direction">${directions}</div></fieldset></div>
-   <div class="transport"><label class="setting"><span>${t('Scroll speed')}</span><output for="speed" id="speed-output">${esc(format(catalog[locale.id]['{0} CSS px / second'], {0:40}))}</output><input type="range" min="1" max="150" value="40" aria-label="${t('Scroll speed')}" id="speed"></label>
-   <label class="setting" id="interval-setting" hidden>${t('Page interval (seconds)')}<input type="number" min="0.5" max="3600" step="0.5" value="3" id="interval"></label>
-   <div class="demo-actions"><button class="primary" id="start">${t('Start')}</button><button id="stop" disabled>${t('Stop')}</button></div></div></div>
-   </section><p class="demo-note">${t('This demo scrolls only this reading area. It does not control other pages or apps.')}</p></div>`;
- const platform = (symbol, title, key, anchor) => `<article><a href="${href('help')}#${anchor}"><span class="platform-icon" aria-hidden="true">${symbol}</span><h2>${title}</h2></a>${paragraph(key)}</article>`;
+ const preview = `<section class="demo-stage" id="demo" tabindex="-1" aria-label="${t('Local scrolling demo')}">
+   <div class="reader">
+     <div class="reading" tabindex="0" role="region" aria-label="${t('Local scrolling demo')}"><div class="reading-content">
+       ${readingPage(t('A little room to read'), paragraphs)}
+       ${readingPage(t('Your reading pace'), [catalog[locale.id]['Set a comfortable pace. Let the words move while your attention stays with the story.'], copy.pagingAnswer], true)}
+     </div></div>
+     <div class="playback"><button id="start">${t('Start')}</button><button id="stop" disabled>${t('Stop')}</button></div>
+     <div class="meter" aria-hidden="true"><i></i></div>
+   </div>
+   <div class="console">
+     <fieldset><legend>${t('Reading mode')}</legend><div class="segmented">
+       <button data-mode="continuous" aria-pressed="true">${t('Continuous')}</button><button data-mode="paged" aria-pressed="false">${t('Paged')}</button>
+     </div></fieldset>
+     <fieldset><legend>${t('Direction')}</legend><div class="direction">${directions}</div></fieldset>
+     <label class="setting"><span>${t('Scroll speed')}</span><output for="speed" id="speed-output">${esc(format(catalog[locale.id]['{0} CSS px / second'], {0:40}))}</output>
+       <input type="range" min="1" max="150" value="40" aria-label="${t('Scroll speed')}" id="speed"></label>
+     <label class="setting" id="interval-setting" hidden>${t('Page interval (seconds)')}<input type="number" min="0.5" max="3600" step="0.5" value="3" id="interval"></label>
+   </div><div class="caption"><p class="demo-status" role="status">${t('Ready')}</p><p>${t('This demo scrolls only this reading area. It does not control other pages or apps.')}</p></div></section>`;
+ const platform = (symbol, title, key, anchor) => `<a class="platform-link" href="${href('help')}#${anchor}">
+   <span class="platform-icon" aria-hidden="true">${symbol}</span><div><h3>${title}</h3>${paragraph(key)}</div><span class="link-arrow" aria-hidden="true">↗</span></a>`;
  const icon = path => `<svg viewBox="0 0 24 24" aria-hidden="true">${path}</svg>`;
  const laptop = icon('<rect x="3" y="4" width="18" height="14" rx="2"/><path d="M1 21h22"/>');
  const compass = icon('<circle cx="12" cy="12" r="9.5"/><path d="m16 7-2.5 6.5L7 17l3-7Z"/>');
  const browser = icon('<rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="M3 9h18M6 6.5h1"/>');
- body=`<main><section class="wrap hero"><div class="intro">
+ body=`<main><section class="launch"><div class="intro wrap">
    <h1>${esc(copy.heading)}</h1><p class="lead">${t('Automatic scrolling for macOS, Safari, and Chrome.')}</p>
-   <p class="intro-detail">${t('Choose a direction, set a speed, or turn pages on a timer.')}</p>
-   <div class="hero-actions">${release.macOS?.dmg ? `<a class="primary link-button" href="${esc(release.macOS.dmg)}" download>${icon('<path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/>')}${t('Download for macOS')}</a>` : ''}
-   ${release.iOS.status === 'available' ? `<a class="secondary link-button" href="${esc(release.iOS.appStoreURL)}">${esc(copy.iosDownload)}</a>` : ''}</div>
-   ${release.macOS?.dmg ? `<p class="preview">${t('Signed and notarized DMG · macOS 14+ · Apple silicon & Intel')}</p>` : ''}
-   <a class="jump" href="#demo-title">${t('Explore the controls')} ↓</a></div>${preview}</section>
-   <section class="platforms"><div class="wrap platform-grid">
+   <div class="hero-actions">${release.macOS?.dmg ? `<a class="primary link-button" data-platform="mac" href="${esc(release.macOS.dmg)}" download>${icon('<path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/>')}${t('Download for macOS')}</a>` : ''}
+   ${release.iOS.status === 'available' ? `<a class="secondary link-button" data-platform="ios" href="${esc(release.iOS.appStoreURL)}">${icon('<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M10 5h4m-3 14h2"/>')}${esc(copy.iosDownload)}</a>` : ''}</div>
+   ${release.macOS?.dmg ? `<p class="preview" data-ios-requirements="iOS ${esc(release.iOS.minimumOS)}+ · iPadOS ${esc(release.iOS.minimumOS)}+">${t('Signed and notarized DMG · macOS 14+ · Apple silicon & Intel')}</p>` : ''}</div>
+   ${preview}</section>
+   <section class="features" id="safari-controls"><div class="wrap feature-layout"><div>
+     <h2>${esc(copy.featuresHeading)}</h2><p>${esc(metadata.summary)}</p>
+     <ul>${metadata.features.map(feature=>`<li>${esc(feature)}</li>`).join('')}</ul>
+     <a class="feature-guide" href="${href('help')}#safari-ios">${t('Read the guide')} →</a>
+   </div><figure class="phone"><img loading="lazy" src="/assets/guide/${locale.id}.webp" width="550" height="1195" alt="${t('Safari on iPhone & iPad')} · ${t('Guide')}"></figure></div></section>
+   <div class="wrap support"><section class="platforms"><h2>${t('Guide')}</h2>
    ${platform(laptop,'macOS','Scroll in the foreground under your pointer, or use fixed mode for supported background windows.','native-mac')}
    ${platform(compass,esc(copy.safariHeading),'Automatic scrolling on webpages you authorize, with controls that stay close to your reading.','safari-ios')}
-   ${platform(browser,'Chrome','Use the same four directions, continuous speed, and timed pages in your active Chrome tab.','chrome')}</div></section>
-   <div class="wrap learn"><section id="safari-controls"><h2>${esc(copy.featuresHeading)}</h2><p>${esc(metadata.summary)}</p>
-   <ul>${metadata.features.map(feature=>`<li>${esc(feature)}</li>`).join('')}</ul></section>
+   ${platform(browser,'Chrome','Use the same four directions, continuous speed, and timed pages in your active Chrome tab.','chrome')}</section>
    <section id="faq"><h2>${t('Frequently asked questions')}</h2>
    ${localizedFAQ.map(({question,answers})=>`<details><summary>${esc(question)}</summary><div class="answer">${answers.map(answer=>`<p>${esc(answer)}</p>`).join('')}</div></details>`).join('')}
    <a class="text-link" href="${href('help')}">${t('Read the guide')} →</a></section></div></main>`;
@@ -150,7 +157,7 @@ for (const locale of config.locales) for (const page of ['home','help','privacy'
  if(page==='home' && release.macOS?.dmg) graph.push({'@type':'SoftwareApplication','@id':release.origin+'/#desktop-app',name:'ScrollCadence',applicationCategory:'UtilitiesApplication',operatingSystem:'macOS 14 or later',softwareVersion:release.version,url:canonical,downloadUrl:absolute(release.macOS.dmg),image:absolute('/assets/app-icon.png'),description:catalog[locale.id]['Scroll in the foreground under your pointer, or use fixed mode for supported background windows.']});
  if(page==='home' && release.iOS.status==='available') graph.push({'@type':'SoftwareApplication','@id':release.origin+'/#ios-safari',name:'ScrollCadence',alternateName:metadata.name,applicationCategory:'UtilitiesApplication',operatingSystem:`iOS ${release.iOS.minimumOS}+; iPadOS ${release.iOS.minimumOS}+`,softwareVersion:release.iOS.version,url:canonical+'#safari-controls',downloadUrl:release.iOS.appStoreURL,image:absolute('/assets/app-icon.png'),description:metadata.summary,featureList:metadata.features,offers:{'@type':'Offer',price:0,priceCurrency:'USD',url:release.iOS.appStoreURL}});
  if(page==='home') graph.push({'@type':'FAQPage','@id':canonical+'#faq',mainEntity:localizedFAQ.map(({question,answers})=>({'@type':'Question',name:question,acceptedAnswer:{'@type':'Answer',text:answers.join('\n')}}))});
- const html=`<!doctype html><html lang="${locale.id}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><meta name="description" content="${description}"><meta property="og:type" content="website"><meta property="og:site_name" content="ScrollCadence"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="${absolute('/assets/app-icon.png')}"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="${title}"><meta name="twitter:description" content="${description}"><meta name="twitter:image" content="${absolute('/assets/app-icon.png')}"><link rel="icon" href="/assets/app-icon.png" type="image/png"><link rel="stylesheet" href="${assets['design-tokens.css']}"><link rel="stylesheet" href="${assets['site.css']}">${config.locales.map(l=>`<link rel="alternate" hreflang="${l.id}" href="${absolute(routeFor(l.id,page))}">`).join('')}<link rel="canonical" href="${canonical}"><link rel="alternate" hreflang="x-default" href="${absolute(routeFor(config.default,page))}"><script type="application/ld+json">${json({'@context':'https://schema.org','@graph':graph})}</script></head><body>${header}${body}${foot}<script id="translations" type="application/json">${json(snippets)}</script><script src="${assets['engine.js']}"></script><script src="${assets['site.js']}"></script></body></html>`;
+ const html=`<!doctype html><html lang="${locale.id}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><meta name="description" content="${description}"><meta property="og:type" content="website"><meta property="og:site_name" content="ScrollCadence"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="${absolute('/assets/app-icon.png')}"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="${title}"><meta name="twitter:description" content="${description}"><meta name="twitter:image" content="${absolute('/assets/app-icon.png')}"><link rel="icon" href="/assets/app-icon.png" type="image/png"><link rel="stylesheet" href="${assets['design-tokens.css']}"><link rel="stylesheet" href="${assets['site.css']}">${config.locales.map(l=>`<link rel="alternate" hreflang="${l.id}" href="${absolute(routeFor(l.id,page))}">`).join('')}<link rel="canonical" href="${canonical}"><link rel="alternate" hreflang="x-default" href="${absolute(routeFor(config.default,page))}"><script type="application/ld+json">${json({'@context':'https://schema.org','@graph':graph})}</script></head><body class="${page}">${header}${body}${foot}<script id="translations" type="application/json">${json(snippets)}</script><script src="${assets['engine.js']}"></script><script src="${assets['site.js']}"></script></body></html>`;
  await mkdir(out+route,{recursive:true}); await writeFile(out+route+'index.html',html);
 }
 await writeFile(out+'index.html',`<!doctype html><html lang="en-US"><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=/en-US/"><title>ScrollCadence</title><a href="/en-US/">ScrollCadence — English (US)</a></html>`);
