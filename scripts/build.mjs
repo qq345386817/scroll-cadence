@@ -44,7 +44,12 @@ const faq = [
  ['How do I install the macOS app?', ['Open the downloaded DMG, drag ScrollCadence to Applications, then launch it and grant Accessibility access when prompted.']],
  ['Does ScrollCadence upload my reading activity?', ['Only scroll settings are saved locally. No account, analytics or content uploads. Manual scrolling or switching tabs pauses; resume when you return.']]
 ];
-if(release.macOS?.dmg) await cp(root+'downloads',out+'downloads',{recursive:true});
+if (release.macOS?.dmg) {
+ const dmg = release.macOS.dmg;
+ if (!/^\/downloads\/[A-Za-z0-9._-]+\.dmg$/.test(dmg)) throw Error('Invalid release DMG path');
+ await mkdir(out+'downloads', {recursive:true});
+ await cp(root+dmg.slice(1), out+dmg.slice(1));
+}
 const esc = s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 for (const locale of config.locales) for (const page of ['home','help','privacy']) {
  const copy = seo[locale.id];

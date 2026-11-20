@@ -102,6 +102,7 @@ for (const url of canonicalURLs) assert(index.includes(`](${url})`));
 for (const file of await readdir(new URL('public/', root))) {
   assert.equal(await readFile(new URL(`dist/${file}`, root), 'utf8'), await readFile(new URL(`public/${file}`, root), 'utf8'));
 }
+assert.deepEqual(await readdir(new URL('dist/downloads/', root)), [release.macOS.dmg.split('/').pop()], 'Publish only the configured DMG');
 const dmg = await readFile(new URL('dist' + release.macOS.dmg, root));
 assert.equal(createHash('sha256').update(dmg).digest('hex'), release.macOS.sha256, 'Download matches the published checksum');
 console.log('Verified 24 localized pages, absolute reciprocal hreflang, canonical URLs, unique descriptions, structured data, FAQ, hashed assets, sitemap, robots, verification files, optional llms index and DMG checksum.');
