@@ -46,7 +46,7 @@ for (const { id } of config.locales) {
     assert.equal(schema['@context'], 'https://schema.org');
     assert(schema['@graph'].some(item => item['@type'] === 'WebPage' && item.url === canonical && item.inLanguage === id));
     if (!page) {
-      assert.equal((html.match(/<dt>/g) || []).length, 6, 'Six visible FAQ answers');
+      assert.equal((html.match(/<details><summary>/g) || []).length, 6, 'Six expandable FAQ answers');
       const software = schema['@graph'].find(item => item['@type'] === 'SoftwareApplication');
       assert.equal(software.downloadUrl, release.origin + release.macOS.dmg);
       assert(!software.aggregateRating, 'No invented ratings');
@@ -65,7 +65,7 @@ for (const { id } of config.locales) {
       assert(html.includes(`href="${release.iOS.appStoreURL}"`));
       assert(!html.includes(esc(catalog[id]['iOS App Store release in preparation. Chrome supports manual installation.'])));
       assert(!html.includes(esc(catalog[id]['Safari for Mac App Store release in preparation.'])));
-      const visible = [...html.matchAll(/<dt>(.*?)<\/dt><dd>(.*?)<\/dd>/gs)];
+      const visible = [...html.matchAll(/<details><summary>(.*?)<\/summary><div class="answer">(.*?)<\/div><\/details>/gs)];
       const faq = schema['@graph'].find(item => item['@type'] === 'FAQPage');
       assert.equal(faq.mainEntity.length, visible.length);
       faq.mainEntity.forEach((question, index) => {
