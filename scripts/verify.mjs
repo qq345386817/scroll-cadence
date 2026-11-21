@@ -11,7 +11,7 @@ const catalog = JSON.parse(await readFile(new URL('catalog.json', root)));
 const esc = value => value.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const canonicalURLs = [];
 assert.equal(config.default, 'en-US');
-assert.equal(config.locales.length, 8);
+assert.equal(config.locales.length, 11);
 assert.equal(new URL(release.origin).protocol, 'https:');
 assert.deepEqual(Object.keys(seo).sort(), config.locales.map(l=>l.id).sort());
 assert.deepEqual(Object.keys(store.locales).sort(), config.locales.map(l=>l.id).sort());
@@ -26,13 +26,13 @@ for (const { id } of config.locales) {
     const html = await readFile(new URL(`dist/${id}/${page}index.html`, root), 'utf8');
     const canonical = `${release.origin}/${id}/${page}`;
     canonicalURLs.push(canonical);
-    assert(html.includes(`<html lang="${id}">`));
+    assert(html.includes(`<html lang="${id}" dir="${id === 'ar' ? 'rtl' : 'ltr'}">`));
     assert.equal((html.match(/<h1[ >]/g) || []).length, 1);
     assert(!html.includes('undefined'));
     assert(!/<script[^>]+src="https?:/.test(html));
     assert(html.includes(`<link rel="canonical" href="${canonical}">`));
     const alternates = [...html.matchAll(/hreflang="([^"]+)" href="([^"]+)"/g)];
-    assert.equal(alternates.length, 9);
+    assert.equal(alternates.length, config.locales.length + 1);
     for (const alternate of config.locales) {
       assert(alternates.some(([, lang, url]) => lang === alternate.id && url === `${release.origin}/${alternate.id}/${page}`));
     }
@@ -105,4 +105,4 @@ for (const file of await readdir(new URL('public/', root))) {
 assert.deepEqual(await readdir(new URL('dist/downloads/', root)), [release.macOS.dmg.split('/').pop()], 'Publish only the configured DMG');
 const dmg = await readFile(new URL('dist' + release.macOS.dmg, root));
 assert.equal(createHash('sha256').update(dmg).digest('hex'), release.macOS.sha256, 'Download matches the published checksum');
-console.log('Verified 24 localized pages, absolute reciprocal hreflang, canonical URLs, unique descriptions, structured data, FAQ, hashed assets, sitemap, robots, verification files, optional llms index and DMG checksum.');
+console.log('Verified 33 localized pages, absolute reciprocal hreflang, canonical URLs, unique descriptions, structured data, FAQ, hashed assets, sitemap, robots, verification files, optional llms index and DMG checksum.');

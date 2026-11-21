@@ -102,5 +102,44 @@
     "iosReview": "Das Update iOS {version} wartet auf die App-Store-Prüfung.",
     "macReview": "Mac Safari {version} wartet auf die Prüfung im Mac App Store.",
     "chromeStatus": "Chrome unterstützt die manuelle Installation."
+  },
+  "ar": {
+    "title": "ScrollCadence — تمرير تلقائي لسفاري وmacOS وChrome",
+    "heading": "التمرير التلقائي بإيقاعك",
+    "description": "مرّر صفحات سفاري وChrome تلقائيًا بسرعة قابلة للضبط أو بمؤقت للصفحات، واختر منطقة التمرير. يتوفر تطبيق macOS مستقل للنوافذ الأصلية المدعومة.",
+    "safariHeading": "سفاري على iPhone وiPad وMac",
+    "featuresHeading": "أدوات التمرير التلقائي في سفاري",
+    "pagingAnswer": "يحرّك النمط المستمر المحتوى بالسرعة التي تحددها. أما النمط المتقطع فينقله بمسافة وفاصل زمني تحددهما. كلاهما يدعم الاتجاهات الأربعة حيثما تسمح الصفحة أو المنطقة المحددة.",
+    "iosDownload": "تنزيل التطبيق المجاني لـ iPhone وiPad",
+    "iosAvailable": "على iPhone وiPad: الإصدار {version} مجاني في App Store.",
+    "iosReview": "تحديث iOS بالإصدار {version} في انتظار مراجعة App Store.",
+    "macReview": "إصدار سفاري {version} على Mac في انتظار مراجعة Mac App Store.",
+    "chromeStatus": "يدعم Chrome التثبيت اليدوي."
+  },
+  "hi": {
+    "title": "ScrollCadence — Safari, macOS और Chrome पर ऑटो स्क्रोल",
+    "heading": "अपनी गति से ऑटो स्क्रोल करें",
+    "description": "Safari और Chrome में क्षेत्र चुनें, गति तय करें और टाइमर से पृष्ठ बदलें। समर्थित मूल विंडो के लिए अलग macOS ऐप उपलब्ध है।",
+    "safariHeading": "iPhone, iPad और Mac पर Safari",
+    "featuresHeading": "Safari के ऑटो स्क्रोल नियंत्रण",
+    "pagingAnswer": "लगातार मोड आपकी चुनी गति से स्क्रोल करता है। पृष्ठवार मोड तय समय और दूरी के हिसाब से आगे बढ़ता है। जहाँ पेज या चुना क्षेत्र स्क्रोल हो सके, वहाँ दोनों मोड चारों दिशाओं में काम करते हैं।",
+    "iosDownload": "iPhone और iPad के लिए मुफ़्त ऐप लें",
+    "iosAvailable": "iPhone और iPad के लिए App Store पर मुफ़्त, संस्करण {version}।",
+    "iosReview": "iOS {version} अपडेट App Store की समीक्षा की प्रतीक्षा में है।",
+    "macReview": "Mac के लिए Safari {version} की Mac App Store समीक्षा बाकी है।",
+    "chromeStatus": "Chrome में मैन्युअल इंस्टॉलेशन उपलब्ध है।"
+  },
+  "ru": {
+    "title": "ScrollCadence — автопрокрутка для Safari, macOS и Chrome",
+    "heading": "Автопрокрутка в вашем темпе",
+    "description": "Прокручивайте страницы Safari и Chrome с выбранной скоростью или по таймеру. Выбирайте область чтения. Для поддерживаемых окон есть отдельное приложение macOS.",
+    "safariHeading": "Safari на iPhone, iPad и Mac",
+    "featuresHeading": "Управление автопрокруткой Safari",
+    "pagingAnswer": "В непрерывном режиме текст движется с выбранной скоростью. В постраничном режиме задаются интервал и шаг. В обоих режимах доступны все четыре направления, если выбранная область допускает такую прокрутку.",
+    "iosDownload": "Скачать бесплатно для iPhone и iPad",
+    "iosAvailable": "Для iPhone и iPad: версия {version} бесплатно в App Store.",
+    "iosReview": "Обновление {version} для iOS ожидает проверки в App Store.",
+    "macReview": "Версия {version} для Safari на Mac ожидает проверки в Mac App Store.",
+    "chromeStatus": "В Chrome доступна ручная установка."
   }
 }

@@ -6,5 +6,20 @@
   "ja": ["砂丘の上から見ると、小道は草の間を縫う細い線に見える。尾根の向こうにいったん隠れ、少し海に近づいたところで、また姿を現す。", "引き潮が砂に黒っぽい筋を残した。一羽の小さな浜鳥がその筋をたどり、波が引くたびに立ち止まる。", "海岸をもう少し進むと、風が砂を細い畝に整えていた。夕方には、そこを横切る新しい足跡がつくだろう。"],
   "ko": ["모래언덕 위에서 내려다보면 오솔길은 풀 사이로 난 가느다란 선처럼 보인다. 능선 뒤로 잠시 사라졌던 길은 바다에 조금 더 가까워진 곳에서 다시 모습을 드러낸다.", "썰물이 모래 위에 짙은 선을 남겼다. 작은 물떼새 한 마리가 그 선을 따라 걷다가 파도가 물러갈 때마다 잠시 걸음을 멈춘다.", "해안을 따라 조금 더 가면 바람이 모래를 빗질하듯 고운 이랑을 만들어 놓았다. 저녁 무렵이면 새로운 발자국이 그 위를 가로지를 것이다."],
   "fr": ["Du haut de la dune, le sentier trace une ligne fine dans les herbes. Il disparaît derrière une crête, puis réapparaît un peu plus près de l’eau.", "La marée a laissé un ruban sombre sur le sable. Un petit oiseau le longe et s’arrête chaque fois que la vague se retire.", "Plus loin, le vent a peigné le sable en fins sillons réguliers. Ce soir, une nouvelle piste de pas les traversera."],
-  "de": ["Von der Düne aus ist der Pfad nur ein schmaler Strich im Gras. Hinter einem Kamm verschwindet er und taucht etwas näher am Wasser wieder auf.", "Die Ebbe hat einen dunklen Saum im Sand hinterlassen. Ein kleiner Strandvogel folgt ihm und hält jedes Mal inne, wenn eine Welle zurückweicht.", "Weiter an der Küste hat der Wind den Sand in feine Rillen gekämmt. Bis zum Abend wird eine neue Spur von Fußabdrücken darüberführen."]
+  "de": ["Von der Düne aus ist der Pfad nur ein schmaler Strich im Gras. Hinter einem Kamm verschwindet er und taucht etwas näher am Wasser wieder auf.", "Die Ebbe hat einen dunklen Saum im Sand hinterlassen. Ein kleiner Strandvogel folgt ihm und hält jedes Mal inne, wenn eine Welle zurückweicht.", "Weiter an der Küste hat der Wind den Sand in feine Rillen gekämmt. Bis zum Abend wird eine neue Spur von Fußabdrücken darüberführen."],
+  "ar": [
+    "من قمة الكثيب يبدو الممر خطًا رفيعًا بين الأعشاب. يختفي خلف مرتفع رملي ثم يظهر من جديد أقرب قليلًا إلى الماء.",
+    "تركت الأمواج خطًا داكنًا على الرمل. يتبعه طائر شاطئي صغير ويتوقف كلما انحسرت موجة.",
+    "على امتداد الساحل رسمت الريح في الرمل تموجات دقيقة متساوية. ومع المساء ستقطعها آثار أقدام جديدة."
+  ],
+  "hi": [
+    "टीले की चोटी से पगडंडी घास में खिंची एक पतली लकीर-सी दिखती है। वह एक उभार के पीछे ओझल होती है और फिर पानी के कुछ और पास दिखने लगती है।",
+    "ज्वार रेत पर एक गहरी लकीर छोड़ गया है। एक छोटी चिड़िया उसके साथ-साथ चलती है और हर बार लहर लौटने पर ठिठक जाती है।",
+    "तट पर आगे हवा ने रेत को सँवारकर बारीक, एक जैसी धारियाँ बना दी हैं। शाम तक उन पर पैरों के नए निशान पड़ जाएँगे।"
+  ],
+  "ru": [
+    "С вершины дюны тропинка кажется тонкой чертой в траве. Она пропадает за гребнем и снова появляется чуть ближе к воде.",
+    "Прилив оставил на песке тёмную полоску. Вдоль неё бежит маленький кулик и останавливается каждый раз, когда волна отступает.",
+    "Дальше по берегу ветер прочесал песок, оставив тонкие ровные гребни. К вечеру их пересекут свежие следы."
+  ]
 }

@@ -40,9 +40,9 @@ nav a:hover, nav [aria-current=page], .text-link:hover {text-decoration:underlin
 .language select {background:transparent; border:0; font-weight:550; max-width:10rem; min-height:44px}
 option {background:var(--sc-surface); color:var(--sc-ink)}
 details {border-bottom:1px solid var(--rule)}
-summary {list-style:none; position:relative; padding:14px 32px 14px 0; font-weight:570}
+summary {list-style:none; position:relative; padding:14px 0; padding-inline-end:32px; font-weight:570}
 summary::-webkit-details-marker {display:none}
-summary::after {content:""; position:absolute; right:6px; top:21px; width:8px; height:8px; border:solid currentColor; border-width:0 1.5px 1.5px 0; transform:rotate(45deg)}
+summary::after {content:""; position:absolute; inset-inline-end:6px; top:21px; width:8px; height:8px; border:solid currentColor; border-width:0 1.5px 1.5px 0; transform:rotate(45deg)}
 details[open] summary::after {transform:rotate(225deg)}
 summary:hover {color:var(--sc-accent)}
 .answer {padding-bottom:16px}
@@ -115,7 +115,7 @@ html:is(:lang(zh),:lang(ja),:lang(ko)) .intro h1 {max-width:10em; letter-spacing
 .cover h3 {padding:24px clamp(22px,3.5vw,50px); font:500 clamp(1.8rem,3.5vw,3.6rem)/1.13 Georgia,"Songti SC","Songti TC",serif; letter-spacing:-.035em; text-shadow:0 2px 8px #101d1e50}
 .prose {max-width:66ch; margin:auto; padding:clamp(24px,4vw,54px) 24px; font:1.12rem/1.75 Georgia,"Songti SC","Songti TC",serif}
 .prose p+p {margin-top:1em}
-.playback {position:absolute; right:16px; top:16px; display:flex; align-items:center; border-radius:50px; background:#0b1e20eb; box-shadow:0 3px 16px #0b1e2036; color:white}
+.playback {position:absolute; inset-inline-end:16px; top:16px; display:flex; align-items:center; border-radius:50px; background:#0b1e20eb; box-shadow:0 3px 16px #0b1e2036; color:white}
 .playback button {display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:44px; padding:8px 16px; background:transparent; border:0; border-radius:50px; font-size:.87rem; font-weight:640; color:white}
 .playback button:hover {background:#ffffff26}
 #start::before {content:""; width:11px; height:12px; background:currentColor; clip-path:polygon(0 0,100% 50%,0 100%)}
@@ -135,21 +135,22 @@ legend {padding:0; margin-bottom:4px}
 .console button:hover {color:var(--sc-accent)}
 .console button[aria-pressed=true] {background:var(--frame); color:var(--sc-accent); font-weight:680; box-shadow:0 1px 4px #12251f28}
 .setting {display:flex; flex-wrap:wrap; align-items:center; column-gap:8px; min-width:0; align-self:stretch; align-content:center}
-.setting output {margin-left:auto; color:var(--sc-muted); font-weight:450; font-size:.74rem; font-variant-numeric:tabular-nums}
+[dir="rtl"] .meter i {transform-origin:right}
+.setting output {margin-inline-start:auto; color:var(--sc-muted); font-weight:450; font-size:.74rem; font-variant-numeric:tabular-nums}
 .setting input {min-width:0; width:100%; accent-color:var(--sc-accent); margin:0}
 .setting input[type=range] {height:44px}
 .setting input[type=number] {margin-top:4px; min-height:44px; padding:6px 10px; border:1px solid var(--rule); border-radius:8px; background:var(--frame)}
 .caption {display:flex; align-items:baseline; gap:10px; justify-content:space-between; padding:4px clamp(16px,3vw,40px) 13px; color:var(--sc-muted); font-size:.73rem}
 .demo-status {font-weight:600; flex:none}
-.demo-status::before {content:""; display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--sc-accent); margin-right:5px}
+.demo-status::before {content:""; display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--sc-accent); margin-inline-end:5px}
 .features {background:#063c37; color:#f1fff9; overflow:clip}
 .feature-layout {max-width:1220px; display:grid; grid-template-columns:minmax(0,1.25fr) minmax(220px,.85fr); align-items:center; gap:clamp(32px,7vw,110px)}
 .feature-layout>div {padding-block:clamp(48px,6.5vw,96px)}
 .features h2,.support h2 {font-size:clamp(2rem,4vw,3.8rem); letter-spacing:-.052em; line-height:1.06; text-wrap:balance}
 .features p {max-width:54ch; margin-top:18px; line-height:1.6; color:#d1e7df}
 .features ul {padding:0; list-style:none; margin:22px 0}
-.features li {position:relative; padding:5px 0 5px 25px}
-.features li::before {content:""; position:absolute; top:11px; left:4px; width:7px; height:11px; border:solid #85ebbc; border-width:0 2px 2px 0; transform:rotate(45deg)}
+.features li {position:relative; padding:5px 0; padding-inline-start:25px}
+.features li::before {content:""; position:absolute; top:11px; inset-inline-start:4px; width:7px; height:11px; border:solid #85ebbc; border-width:0 2px 2px 0; transform:rotate(45deg)}
 .feature-guide {background:#daffed; color:#123c31}
 .feature-guide:hover {background:white; color:#153c2c}
 .phone {align-self:end; justify-self:center; width:min(310px,100%); height:clamp(365px,36vw,490px); position:relative; padding:7px; padding-bottom:0; border-radius:40px 40px 0 0; background:#182022; border:2px solid #91a9a0; border-bottom:0; overflow:hidden; box-shadow:0 0 0 2px #314e45,12px 14px 65px #041c19a1}
@@ -176,7 +177,7 @@ legend {padding:0; margin-bottom:4px}
   .feature-layout {grid-template-columns:1.1fr .8fr; gap:28px}
   .support {grid-template-columns:1fr; gap:40px}
   .doc-layout {display:block}
-  .contents {position:static; border-left:2px solid var(--rule); padding-left:14px; margin-bottom:24px}
+  .contents {position:static; border-inline-start:2px solid var(--rule); padding-inline-start:14px; margin-bottom:24px}
 }
 @media (max-width:640px) {
   .home .nav,.nav {flex-wrap:wrap; gap:0 12px; padding-block:6px}
@@ -194,7 +195,7 @@ legend {padding:0; margin-bottom:4px}
   .preview {max-width:37ch; padding-inline:8px}
   .demo-stage {border-radius:18px}
   .reader {--reading-height:210px}
-  .playback {right:10px; top:10px}
+  .playback {inset-inline-end:10px; top:10px}
   .console {grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:6px 12px}
   .setting {grid-column:1/-1}
   .setting input[type=range] {height:30px}

@@ -18,6 +18,7 @@
     },
     {
       "id": "es",
+      "store": "es-ES",
       "extension": "es",
       "name": "Español"
     },
@@ -33,13 +34,31 @@
     },
     {
       "id": "fr",
+      "store": "fr-FR",
       "extension": "fr",
       "name": "Français"
     },
     {
       "id": "de",
+      "store": "de-DE",
       "extension": "de",
       "name": "Deutsch"
+    },
+    {
+      "id": "ar",
+      "store": "ar-SA",
+      "extension": "ar",
+      "name": "العربية"
+    },
+    {
+      "id": "hi",
+      "extension": "hi",
+      "name": "हिन्दी"
+    },
+    {
+      "id": "ru",
+      "extension": "ru",
+      "name": "Русский"
     }
   ]
 }

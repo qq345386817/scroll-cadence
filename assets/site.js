@@ -52,7 +52,7 @@
   function updateProgress() {
     const horizontal = ['left','right'].includes(settings.direction);
     const range = horizontal ? area.scrollWidth - area.clientWidth : area.scrollHeight - area.clientHeight;
-    const position = horizontal ? area.scrollLeft : area.scrollTop;
+    const position = horizontal ? Math.abs(area.scrollLeft) : area.scrollTop;
     meter.style.setProperty('--progress', range > 0 ? Math.max(0, Math.min(1, position / range)) : 0);
   }
   area.addEventListener('scroll', updateProgress, {passive:true});
@@ -74,8 +74,11 @@
     const backwards = ['left','up'].includes(settings.direction);
     const max = horizontal ? area.scrollWidth - area.clientWidth : area.scrollHeight - area.clientHeight;
     const offset = horizontal ? area.scrollLeft : area.scrollTop;
-    if (backwards ? offset <= 1 : offset >= max - 1) {
-      area.scrollTo({ [horizontal ? 'left' : 'top']: backwards ? max : 0, behavior:'instant' });
+    const rtl = horizontal && getComputedStyle(area).direction === 'rtl';
+    const minOffset = rtl ? -max : 0;
+    const maxOffset = rtl ? 0 : max;
+    if (backwards ? offset <= minOffset + 1 : offset >= maxOffset - 1) {
+      area.scrollTo({ [horizontal ? 'left' : 'top']: backwards ? maxOffset : minOffset, behavior:'instant' });
     }
   }
   configure({});
